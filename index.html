@@ -1,83 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GitHub Viewer Layout</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<aside>
+  <div class="calendar-label">📁 연도 선택</div>
+  <ul id="year-list"></ul>
+</aside>
 
-    body, html {
-      height: 100%;
-      font-family: Arial, sans-serif;
-    }
+<main>
+  <iframe id="main-frame"
+    srcdoc='
+      <h2>📂 티켓 목록</h2>
+      <ul id="ticket-list"></ul>
+      <script src="render-list.js" data-year="2025"></script>'
+    title="GitHub 파일 리스트">
+  </iframe>
+</main>
 
-    header {
-      height: 60px;
-      background-color: #282c34;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      font-weight: bold;
-    }
+<script>
+  // 연도 리스트 초기화
+  const yearFiles = ['2024.data', '2025.data', '2026.data'];
+  const yearList = document.getElementById('year-list');
+  const frame = document.getElementById('main-frame');
 
-    .container {
-      display: flex;
-      height: calc(100% - 60px);
-    }
-
-    aside {
-      width: 200px;
-      background-color: #f3f3f3;
-      padding: 20px;
-      border-right: 1px solid #ccc;
-    }
-
-    main {
-      flex-grow: 1;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    .calendar-label {
-      margin-bottom: 8px;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    🎨 디자인 상단 영역
-  </header>
-
-  <div class="container">
-    <aside>
-      <div class="calendar-label">📅 날짜 선택</div>
-      <input type="date" id="calendar">
-    </aside>
-
-    <main>
-      <iframe
-        srcdoc='
-          <h2>📂 2025 티켓 목록</h2>
-          <ul id="ticket-list"></ul>
-          <script src="render-list.js"></script>'
-        title="GitHub 파일 리스트"></iframe>
-    </main>
-  </div>
-
-</body>
-</html>
+  yearFiles.forEach(file => {
+    const year = file.replace('.data', '');
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = '#';
+    a.textContent = `📅 ${year}`;
+    a.onclick = () => {
+      frame.srcdoc = `
+        <h2>📂 ${year} 티켓 목록</h2>
+        <ul id="ticket-list"></ul>
+        <script src="render-list.js" data-year="${year}"><\/script>`;
+    };
+    li.appendChild(a);
+    yearList.appendChild(li);
+  });
+</script>
