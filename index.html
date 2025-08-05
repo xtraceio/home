@@ -98,7 +98,7 @@
 
   <script>
     // ✅ 여기에 연도별 .data 파일 목록을 수동 등록하거나, 자동 스캔 기능으로 교체할 수 있습니다.
-    const yearFiles = ['./years/2024.data', './years/2025.data', './years/2026.data'];
+    const yearFiles = ['2024.data', '2025.data', '2026.data'];
 
     const yearList = document.getElementById('year-list');
     const frame = document.getElementById('main-frame');
@@ -113,7 +113,7 @@
         frame.srcdoc = `
           <h2>📂 ${year} 티켓 목록</h2>
           <ul id="ticket-list"></ul>
-          <script src="render-list.js" data-year="${year}"><\/script>`;
+          <script src="render-list.js" data-year="./years/${year}"><\/script>`;
       };
       li.appendChild(a);
       yearList.appendChild(li);
