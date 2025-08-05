@@ -1,10 +1,15 @@
-/* ▣ 연도 설정 (index.html에서 data-year 속성 전달) ▣ */
-const scriptEl = document.currentScript;
-const YEAR = scriptEl.getAttribute('data-year') || '2025';
+function getYearFromQuery() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('year') || '2025';
+}
+
+const YEAR = getYearFromQuery();
 const DATA_URL = `./years/${YEAR}.data`;
 const BASE_URL = `./tickets/abcdEFGH`;
 
-/* ▣ 렌더링 ▣ */
+const heading = document.getElementById('heading');
+if (heading) heading.textContent = `📂 ${YEAR} 티켓 목록`;
+
 fetch(DATA_URL)
   .then(r => r.text())
   .then(text => {
