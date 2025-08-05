@@ -1,39 +1,83 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>2025 티켓 리스트</title>
+  <title>GitHub Viewer Layout</title>
   <style>
-    body {
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      height: 100%;
       font-family: Arial, sans-serif;
+    }
+
+    header {
+      height: 60px;
+      background-color: #282c34;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .container {
+      display: flex;
+      height: calc(100% - 60px);
+    }
+
+    aside {
+      width: 200px;
+      background-color: #f3f3f3;
       padding: 20px;
+      border-right: 1px solid #ccc;
     }
-    h2 {
-      margin-bottom: 10px;
+
+    main {
+      flex-grow: 1;
+      padding: 0;
+      overflow: hidden;
     }
-    ul {
-      list-style: none;
-      padding-left: 0;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
-    li {
-      margin-bottom: 6px;
-    }
-    a {
-      text-decoration: none;
-      color: #0366d6;
-    }
-    a:hover {
-      text-decoration: underline;
+
+    .calendar-label {
+      margin-bottom: 8px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
-  <h2>📂 2025 티켓 목록</h2>
-  <ul id="ticket-list"></ul>
+  <header>
+    🎨 디자인 상단 영역
+  </header>
 
-  <script src="render-list.js"></script>
+  <div class="container">
+    <aside>
+      <div class="calendar-label">📅 날짜 선택</div>
+      <input type="date" id="calendar">
+    </aside>
+
+    <main>
+      <iframe
+        srcdoc='
+          <h2>📂 2025 티켓 목록</h2>
+          <ul id="ticket-list"></ul>
+          <script src="render-list.js"><\/script>'
+        title="GitHub 파일 리스트"></iframe>
+    </main>
+  </div>
 
 </body>
 </html>
