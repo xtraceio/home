@@ -1,6 +1,6 @@
 const DATA_URL = '2025.data';  // .data 파일 경로
 //const BASE_URL = 'https://your-github-page-url/tickets';  // 티켓 HTML 경로
-const BASE_URL = './html/';  // 티켓 HTML 경로
+const BASE_URL = './tickets/abcdEFGH';  // 티켓 HTML 경로
 
 fetch(DATA_URL)
   .then(response => response.text())
