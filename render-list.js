@@ -1,6 +1,7 @@
+// render-list.js
 function getYearFromQuery() {
   const params = new URLSearchParams(window.location.search);
-  return params.get('year') || '2025';
+  return params.get('year') || '2025';  // 쿼리 파라미터에서 year 추출
 }
 
 const YEAR = getYearFromQuery();
