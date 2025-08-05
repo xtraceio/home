@@ -86,20 +86,12 @@
     </aside>
 
     <main>
-      <iframe id="main-frame"
-        srcdoc='
-          <h2>📂 2025 티켓 목록</h2>
-          <ul id="ticket-list"></ul>
-          <script src="render-list.js" data-year="2025"><\/script>'
-        title="GitHub 파일 리스트">
-      </iframe>
+      <iframe id="main-frame" src="render.html?year=2025" title="GitHub 파일 리스트"></iframe>
     </main>
   </div>
 
   <script>
-    // ✅ 여기에 연도별 .data 파일 목록을 수동 등록하거나, 자동 스캔 기능으로 교체할 수 있습니다.
     const yearFiles = ['2024.data', '2025.data', '2026.data'];
-
     const yearList = document.getElementById('year-list');
     const frame = document.getElementById('main-frame');
 
@@ -110,10 +102,7 @@
       a.href = '#';
       a.textContent = `📅 ${year}`;
       a.onclick = () => {
-        frame.srcdoc = `
-          <h2>📂 ${year} 티켓 목록</h2>
-          <ul id="ticket-list"></ul>
-          <script src="render-list.js" data-year="./years/${year}"><\/script>`;
+        frame.src = `render.html?year=${year}`;
       };
       li.appendChild(a);
       yearList.appendChild(li);
