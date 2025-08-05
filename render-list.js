@@ -1,7 +1,7 @@
 /* ▣ 연도 설정 (index.html에서 data-year 속성 전달) ▣ */
 const scriptEl = document.currentScript;
 const YEAR = scriptEl.getAttribute('data-year') || '2025';
-const DATA_URL = `${YEAR}.data`;
+const DATA_URL = `./years/${YEAR}.data`;
 const BASE_URL = `./tickets/abcdEFGH`;
 
 /* ▣ 렌더링 ▣ */
