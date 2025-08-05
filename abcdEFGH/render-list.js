@@ -39,6 +39,7 @@ fetch(DATA_URL)
           link.href = `${BASE_URL}/${YEAR}/${month}/${day}/${id}.html`;
           link.target = '_blank';
           link.textContent = `${YEAR}년 ${parseInt(month)}월 ${parseInt(day)}일 (#${id})`;
+          link.classList.add('ticket-entry');
           li.appendChild(link);
           ul.appendChild(li);
         });
